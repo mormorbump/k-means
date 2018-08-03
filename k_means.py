@@ -1,7 +1,7 @@
 import numpy as np
 import numpy.random as rd
 from collections import Counter
-from k_means_answer import TwoDimSampling
+from multivariate_gauss_sampling import MultivariateGaussSampling
 import matplot_config as mat
 
 
@@ -124,7 +124,7 @@ class Kmeans:
 
 
 if __name__ == "__main__":
-    two_dim_sampling = TwoDimSampling()
-    data = two_dim_sampling.copy_org_data()
+    multivariate_gauss_sampling = MultivariateGaussSampling()
+    data = multivariate_gauss_sampling.copy_org_data()
     k_means = Kmeans(data)
     k_means.k_means_algorithm()

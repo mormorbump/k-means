@@ -4,7 +4,7 @@ from scipy import stats as st
 import matplot_config as mat
 
 
-class TwoDimSampling:
+class MultivariateGaussSampling:
     """
     教師データサンプリング
     """
@@ -123,5 +123,5 @@ class TwoDimSampling:
 
 
 if __name__ == "__main__":
-    data = TwoDimSampling()
-    data.plot_data()
+    multivariate_gauss_sampling = MultivariateGaussSampling()
+    multivariate_gauss_sampling.plot_data()
