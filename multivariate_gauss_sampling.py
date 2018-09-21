@@ -13,7 +13,7 @@ class MultivariateGaussSampling:
     def __init__(self, D=2, K=3, n=[200, 150, 150], c=["r", "g", "b"]):
         self.D = D  # 次元数
         self.K = K  # クラスタ数
-        self.n = n  #  クラスタ毎のデータ数
+        self.n = n  # クラスタ毎のデータ数
         self.N = np.sum(self.n)  # 全体のデータ数
         self.c = c  # クラスタ毎に色分け
         self.mu_true = self.__get_mu()
@@ -81,17 +81,18 @@ class MultivariateGaussSampling:
             # これによって、scatterメソッドでプロットするときに、この値によってデータを区切って、さらに色分けしてマッピングすることができる。
             org_data = self.__init_org_data_gauss_sampling(i)
         else:
-            # 2回目以降は全開のorg_dataにさらにガウス分布を結合
+            # 2回目以降は前回のorg_dataにさらにガウス分布を結合
             org_data = self.__add_org_data_gauss_sampling(org_data, i)
         return org_data
 
     def __init_org_data_gauss_sampling(self, i):
+        # rvsは混合ガウス分布に基づいてランダムに生成
         org_data = np.c_[
             st.multivariate_normal.rvs(mean=self.mu_true[i],
                                        cov=self.sigma_true[i],
                                        size=self.n[i]
                                        ),
-            np.ones(self.n[i]) * i
+            np.ones(self.n[i]) * i  # クラスタを表す
         ]
         return org_data
 
@@ -102,7 +103,7 @@ class MultivariateGaussSampling:
                                              cov=self.sigma_true[i],
                                              size=self.n[i]
                                              ),
-                  np.ones(self.n[i]) * i]
+                  np.ones(self.n[i]) * i]  # クラスタを表す
         ]
         return org_data
 

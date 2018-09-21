@@ -37,19 +37,19 @@ class Kmeans:
             mat.plt.scatter([self.mu[i, 0]], [self.mu[i, 1]], c=self.c[i], marker="o")
 
         mat.plt.title("initial state")
-        # mat.plt.show()
+        mat.plt.show()
 
     def k_means_algorithm(self):
         """
-        k-means algorithm
+        k-means_GMM algorithm
         """
         # 重心を最適化するため、適当な回数繰り返し処理
         for _iter in range(100):
             self.__step1()
             self.__step2()
             diff = self.mu - self.mu_prev  # 差分を取得。
-            print("diff:\n", diff)
-            self.__plot(_iter)
+            print(_iter , "diff:\n", diff)
+            # self.__plot(_iter)
 
             if np.abs(np.sum(diff)) < 10e-4:
                 print("mu is conberged.")
@@ -128,3 +128,4 @@ if __name__ == "__main__":
     data = multivariate_gauss_sampling.copy_org_data()
     k_means = Kmeans(data)
     k_means.k_means_algorithm()
+    # k_means.init_data_plot()
